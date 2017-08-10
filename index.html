@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hangman Game</title>
+</head>
+
+<body>
+    <script>
+        //Arrays and Variables
+
+        var artis = {
+            q1: ["madonna", "imagelink", "songlink"],
+            q2: ["kiss", "imagelink", "songlink"],
+            q3: ["queen", "imagelink", "songlink"]
+        }
+        var artist_name = [artis.q1[0], artis.q2[0], artis.q3[0]];
+        var artisindex = 0;
+        guess_left = 10;
+        user_record = [];
+        console.log(artist_name);
+
+        //////////////////////SAND BOX/////////////////////
+
+
+
+
+
+        //////////////////////////////////////////////////
+
+
+        //Functions
+
+        //Function to evaluate the lengh of the artis name
+        function singer_lengh(artist_name, index) {
+            var artist_lengh = artist_name[index];
+            return artist_lengh.length;
+            console.log("Singer Name Lengh " + artist_name[index] + " " + artist_lengh.length);
+        }
+        // Funtion to collect the wrong answare and save in array
+        function notMatch(userGuest) {
+            if (guess_left > 0) {
+                console.log(user_record);
+                console.log(guess_left);
+                guess_left--;
+            } else {
+                looses++;
+                user_record = [];
+                guess_left = 10;
+                console.log("Save");
+            }
+        }
+        //Function to evaluate if the letter is included in the word OK!
+        function user_response_evaluate(artist_name, userchoice) {
+            var find = artist_name.includes(userchoice);
+            console.log(find);
+            return find;
+        }
+
+
+
+        // ********************************
+        //          MAIN EVALUATION  
+        // ********************************
+
+        //will be a loop , in the meantime use 1st singer
+        var i = 0;
+        singer = artist_name[i];
+        document.onkeyup = function(event) {
+            var userGuest = event.key;
+            console.log(userGuest);
+            //looking if the choise in content inside//
+            if (user_response_evaluate(singer, userGuest)) {
+                console.log("match");
+            } else {
+                console.log("not match");
+                notMatch();
+            }
+        }
+    </script>
+
+</body>
+
+</html>
