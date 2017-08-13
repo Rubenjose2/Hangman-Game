@@ -21,6 +21,8 @@
         var artisindex = 0;
         guess_left = 10;
         user_record = [];
+        var singer = "";
+        var singer_array = [];
         console.log(artist_name);
 
         //////////////////////SAND BOX/////////////////////
@@ -69,6 +71,10 @@
         //will be a loop , in the meantime use 1st singer
         var i = 0;
         singer = artist_name[i];
+        singer_array = singer.split("");
+        console.log(singer);
+        console.log(singer_array);
+        ///////////////////////////////////////////////
         document.onkeyup = function(event) {
             var userGuest = event.key;
             console.log(userGuest);
@@ -77,6 +83,7 @@
                 console.log("match");
             } else {
                 console.log("not match");
+                user_record.push(userGuest);
                 notMatch();
             }
         }
