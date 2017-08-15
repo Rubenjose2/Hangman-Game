@@ -16,3 +16,11 @@ body {
 .container_singer_css {
     font-size: 40px;
 }
+
+.img_container {
+    width: 80%;
+    height: 80%;
+    opacity: 1;
+    filter: blur(3px);
+    margin: 10% 5%;
+}
