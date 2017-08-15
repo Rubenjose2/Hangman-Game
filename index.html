@@ -23,6 +23,9 @@
         user_record = [];
         var singer = "";
         var singer_array = [];
+        var container_array = [];
+        var break_next = "";
+        var index = 0;
         console.log(artist_name);
 
         //////////////////////SAND BOX/////////////////////
@@ -30,12 +33,20 @@
 
 
 
-
         //////////////////////////////////////////////////
 
 
-        //Functions
-
+        ////////////////////Functions/////////////////////
+        function pullartisname(artis_name, index) {
+            singer = artis_name[index];
+            singer_array.length = 0;
+            container_array.length = 0;
+            singer_array = singer.split("");
+            for (var i = 0; i < singer_array.length; i++) {
+                container_array.push("_");
+            }
+            return singer, singer_array, container_array;
+        }
         //Function to evaluate the lengh of the artis name
         function singer_lengh(artist_name, index) {
             var artist_lengh = artist_name[index];
@@ -61,31 +72,45 @@
             console.log(find);
             return find;
         }
-
-
-
         // ********************************
         //          MAIN EVALUATION  
         // ********************************
 
-        //will be a loop , in the meantime use 1st singer
-        var i = 0;
-        singer = artist_name[i];
-        singer_array = singer.split("");
+        pullartisname(artist_name, index);
+        // for (var i = 0; i < singer_array.length; i++) {
+        //     container_array.push("_");
+        // }
         console.log(singer);
         console.log(singer_array);
+
         ///////////////////////////////////////////////
         document.onkeyup = function(event) {
             var userGuest = event.key;
+
             console.log(userGuest);
+            console.log(container_array);
             //looking if the choise in content inside//
             if (user_response_evaluate(singer, userGuest)) {
                 console.log("match");
+                for (var i = 0; i < singer_array.length; i++) {
+                    if (userGuest == singer_array[i]) {
+                        container_array[i] = userGuest;
+                    }
+                }
+                console.log(container_array);
             } else {
                 console.log("not match");
                 user_record.push(userGuest);
                 notMatch();
             }
+            break_next = container_array.join("");
+            if (break_next == singer) {
+                console.log("yes");
+                index++;
+                pullartisname(artist_name, index);
+                console.log(singer);
+            }
+            console.log(break_next);
         }
     </script>
 
