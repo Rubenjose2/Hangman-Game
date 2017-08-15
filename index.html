@@ -5,10 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Hangman Game</title>
 </head>
 
 <body>
+    <div class="container">
+        <div class="row top_margin">
+
+            <div class="col-md-5 white">
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-5 white text-center">
+                <div>
+                    <h3>Guess your Favorite Singer or Band</h3>
+                </div>
+                <div>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                </div>
+                <div class="container_singer_css">
+                    <span id="singer_container"></span>
+                </div>
+                <div>
+                    </br>
+                    </br>
+                    <div>You have this many option left:</div>
+                    <span id="option_left"></span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
     <script>
         //Arrays and Variables
 
@@ -65,6 +108,7 @@
                 guess_left = 10;
                 console.log("Save");
             }
+            return guess_left;
         }
         //Function to evaluate if the letter is included in the word OK!
         function user_response_evaluate(artist_name, userchoice) {
@@ -82,13 +126,14 @@
         // }
         console.log(singer);
         console.log(singer_array);
-
+        document.getElementById("singer_container").innerHTML = container_array;
         ///////////////////////////////////////////////
         document.onkeyup = function(event) {
             var userGuest = event.key;
 
             console.log(userGuest);
             console.log(container_array);
+
             //looking if the choise in content inside//
             if (user_response_evaluate(singer, userGuest)) {
                 console.log("match");
@@ -97,11 +142,13 @@
                         container_array[i] = userGuest;
                     }
                 }
+                document.getElementById("singer_container").innerHTML = container_array;
                 console.log(container_array);
             } else {
                 console.log("not match");
                 user_record.push(userGuest);
                 notMatch();
+                document.getElementById("option_left").innerHTML = guess_left;
             }
             break_next = container_array.join("");
             if (break_next == singer) {

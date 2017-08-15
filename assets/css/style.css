@@ -1,0 +1,18 @@
+body {
+    background-image: url(../images/imgconcert2.jpg);
+}
+
+.white {
+    background-color: white;
+    height: 500px;
+    border-radius: 30px;
+    opacity: 0.8;
+}
+
+.top_margin {
+    margin: 70px 30px;
+}
+
+.container_singer_css {
+    font-size: 40px;
+}
