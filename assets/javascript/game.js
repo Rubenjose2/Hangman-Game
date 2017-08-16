@@ -68,13 +68,10 @@ function user_response_evaluate(artist_name, userchoice) {
 // ********************************
 
 pullartisname(artist_name, index);
-// for (var i = 0; i < singer_array.length; i++) {
-//     container_array.push("_");
-// }
 console.log(singer);
 console.log(singer_array);
 console.log(singer_picture);
-document.getElementById("singer_container").innerHTML = container_array;
+document.getElementById("singer_container").innerHTML = container_array.join(" ");
 document.getElementById("option_left").innerHTML = guess_left;
 document.getElementById("image_id").src = singer_picture;
 ///////////////////////////////////////////////
@@ -92,7 +89,7 @@ document.onkeyup = function(event) {
                 container_array[i] = userGuest;
             }
         }
-        document.getElementById("singer_container").innerHTML = container_array;
+        document.getElementById("singer_container").innerHTML = container_array.join(" ");
         console.log(container_array);
     } else {
         console.log("not match");
@@ -105,7 +102,7 @@ document.onkeyup = function(event) {
         console.log("yes");
         index++;
         pullartisname(artist_name, index);
-        document.getElementById("singer_container").innerHTML = container_array;
+        document.getElementById("singer_container").innerHTML = container_array.join(" ");
         document.getElementById("image_id").src = singer_picture;
         console.log(singer);
     }
