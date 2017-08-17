@@ -36,6 +36,8 @@ function pullartisname(artis_name, index) {
     for (var i = 0; i < singer_array.length; i++) {
         container_array.push("_");
     }
+    document.getElementById("singer_container").innerHTML = container_array.join(" ");
+    document.getElementById("image_id").src = singer_picture;
     return singer, singer_array, container_array, singer_picture;
 }
 //Function to evaluate the lengh of the artis name
@@ -50,10 +52,12 @@ function notMatch(userGuest) {
         console.log(guess_left);
         guess_left--;
     } else {
-        looses++;
         user_record = [];
         guess_left = 10;
+        index++;
+        pullartisname(artist_name, index);
         console.log("Save");
+        document.getElementById("image_id").style.filter = "blur(3px)";
     }
     return guess_left;
 }
@@ -66,14 +70,12 @@ function user_response_evaluate(artist_name, userchoice) {
 // ********************************
 //          MAIN EVALUATION  
 // ********************************
-
+// Initial statement or start up////
 pullartisname(artist_name, index);
 console.log(singer);
 console.log(singer_array);
 console.log(singer_picture);
-document.getElementById("singer_container").innerHTML = container_array.join(" ");
 document.getElementById("option_left").innerHTML = guess_left;
-document.getElementById("image_id").src = singer_picture;
 ///////////////////////////////////////////////
 document.onkeyup = function(event) {
     var userGuest = event.key;
@@ -95,15 +97,19 @@ document.onkeyup = function(event) {
         console.log("not match");
         user_record.push(userGuest);
         notMatch();
+        if (guess_left == 0) {
+            document.getElementById("singer_container").innerHTML = singer;
+            document.getElementById("image_id").style.filter = "blur(0px)";
+        }
         document.getElementById("option_left").innerHTML = guess_left;
+        document.getElementById("already_choice").innerHTML = user_record.join(" ");
     }
     break_next = container_array.join("");
     if (break_next == singer) {
         console.log("yes");
+        document.getElementById("singer_container").innerHTML = singer;
         index++;
         pullartisname(artist_name, index);
-        document.getElementById("singer_container").innerHTML = container_array.join(" ");
-        document.getElementById("image_id").src = singer_picture;
         console.log(singer);
     }
     console.log(break_next);
